@@ -45,7 +45,7 @@ desktop/src-tauri/gen/schemas
 *.exe
 
 # Model files (too large for git)
-models/
+/models/
 *.onnx
 
 # Database files
