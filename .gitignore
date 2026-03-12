@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+target/
+
+# IDE
+.idea/
+.vscode/
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Env
+.env
+.env.local
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Tauri build
+desktop/src-tauri/target/
+desktop/src-tauri/gen/schemas
+
+# Tauri bundle output
+*.dmg
+*.app
+*.deb
+*.rpm
+*.msi
+*.AppImage
+*.exe
+
+# Model files (too large for git)
+models/
+*.onnx
+
+# Database files
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Debug session logs
+.cursor/
