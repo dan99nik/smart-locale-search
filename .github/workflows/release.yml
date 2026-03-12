@@ -48,7 +48,29 @@ jobs:
         working-directory: desktop
         run: npm ci
 
-      - name: Build Tauri app
+      - name: Verify Cargo config
+        shell: bash
+        run: |
+          echo "--- desktop/.cargo/config.toml ---"
+          cat desktop/.cargo/config.toml 2>/dev/null || echo "not found"
+          echo "--- desktop/src-tauri/.cargo/config.toml ---"
+          cat desktop/src-tauri/.cargo/config.toml 2>/dev/null || echo "not found"
+
+      - name: Clean ort binary cache (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: rm -rf "$LOCALAPPDATA/ort.pyke.io" 2>/dev/null || true
+
+      - name: Build Tauri app (Windows)
+        if: runner.os == 'Windows'
+        working-directory: desktop
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ""
+          RUSTFLAGS: -C target-feature=-crt-static
+        run: npx tauri build --target ${{ matrix.target }}
+
+      - name: Build Tauri app (macOS)
+        if: runner.os == 'macOS'
         working-directory: desktop
         env:
           TAURI_SIGNING_PRIVATE_KEY: ""
